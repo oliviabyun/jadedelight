@@ -27,6 +27,9 @@
 	}
 </style>
 <script>
+	window.onload = function() {
+		pickup();
+	}
 	function pickup() {
 		//see if order is a pickup order
 		pickupOrder = document.getElementsByName("p_or_d")[0].checked;
@@ -170,18 +173,18 @@
 			return false;
 		}
 
-		//make sure phone fits expected format: XXX-XXX-XXXX or XXXXXXXXXX
-		var reg = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
-    	var reg2 = /^[0-9]{3}[0-9]{3}[0-9]{4}$/;
+		//turn phone number into a string
+		phone = parseInt(phoneNumber.value);
+		phone = phone.toString();
 
-		if (!(reg.test(phoneNumber.value) || (reg2.test(phoneNumber.value)))) {
+		//check to make sure phone is the right length
+		if (phone.length == 7 || phone.length == 10) {
+			return true;
+		} else {
 			//print error message
-			alert("Invalid phone number. Please enter a valid format.");
-			
+			alert("Invalid phone number - please try again.")
 			return false;
 		}
-
-		return true;
 	}
 
 	function validateAddress(addressType) {
