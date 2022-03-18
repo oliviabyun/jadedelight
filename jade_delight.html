@@ -30,6 +30,7 @@
 	window.onload = function() {
 		pickup();
 	}
+
 	function pickup() {
 		//see if order is a pickup order
 		pickupOrder = document.getElementsByName("p_or_d")[0].checked;
@@ -112,9 +113,13 @@
 			total = 0;
 		}
 
-		//alert with order info
-		alert("Thanks for ordering!\n" + type + " time: " + hour + ":" 
-			+ minutes.toString() + " " + am + "\n Total: $" + total);
+		//concatenate order data
+		order = "Thanks for ordering from Jade Delight!<br/>" + type + " time: " + hour + ":"
+				+ minutes.toString() + " " + am + "<br/> Total: $" + total;
+		
+		//open new window, display order confirmation
+		myWindow = window.open("", "MsgWindow", "width=300,height=200");
+		myWindow.document.write(order);
 	}
 
 	function validate() {
