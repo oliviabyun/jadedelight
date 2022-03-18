@@ -124,7 +124,7 @@
 
 	function validate() {
 		//validate last name and phone number
-		if (!validateLast() || !validatePhoneNumber()) {
+		if (!validateLast() || !validatePhoneNumber() || !validateOrder()) {
 			return false;
 		}
 
@@ -190,6 +190,30 @@
 			alert("Invalid phone number - please try again.")
 			return false;
 		}
+	}
+
+	function validateOrder() {
+		emptyOrder = 0;
+		
+		//loop through each menu item
+		for (i = 0; i < menuItems.length; i++) {
+			//get quantity of each item ordered
+			items = parseInt(document.getElementsByName("quan" + i)[0].value);
+
+			//if qty is 0, add to empty order variable
+			if (items == 0) {
+				emptyOrder++;
+			}
+		}
+
+		//if # of empty qtys matches # of menu items, user didn't select any
+		if (emptyOrder == menuItems.length) {
+			//display error messsage
+			alert("Please select at least one menu item.")
+			return false;
+		}
+		
+		return true;
 	}
 
 	function validateAddress(addressType) {
